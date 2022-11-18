@@ -17,12 +17,13 @@ import lombok.ToString;
 
 public class Contato {
 
-	private Integer idConato;
+	private Integer idContato;
 	private String nome;
 	private String telefone;
 	private String email;
 	private Date dataNascimento;
 	private TipoContato tipo;
 	private Integer idUsuario;
+	private Usuario usuario;
 
 }

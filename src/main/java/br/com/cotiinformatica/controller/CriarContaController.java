@@ -21,7 +21,7 @@ public class CriarContaController {
 	}
 
 	@RequestMapping(value = "/cadastrar-usuario", method = RequestMethod.POST)
-	public ModelAndView cadastraUsuario(HttpServletRequest request) {
+	public ModelAndView cadastrarUsuario(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("criarconta");
 
 		try {
@@ -35,9 +35,21 @@ public class CriarContaController {
 
 			// gravando o usuario no banco de dados
 			UsuarioRepository usuarioRepository = new UsuarioRepository();
-			usuarioRepository.create(usuario);
 
-			modelAndView.addObject("mensagem", "Parabéns " + usuario.getNome() + ", sua conta foi criada com sucesso");
+			// verificar se o email informado ja esta cadastrado
+			if (usuarioRepository.findByEmail(usuario.getEmail()) != null) {
+
+				modelAndView.addObject("mensagem",
+						"O email  " + usuario.getEmail() + " já esta cadastrado no sistema.");
+
+			}
+			else {
+				
+				usuarioRepository.create(usuario);
+				modelAndView.addObject("mensagem",
+						"Parabéns " + usuario.getNome() + ", sua conta foi criada com sucesso!");
+			}
+
 
 		} catch (Exception e) {
 			modelAndView.addObject("mensagem", "Falha ao cadastrar: " + e.getMessage());
