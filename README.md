@@ -8,7 +8,6 @@ Sistema web para controle de agenda de contatos de usuários
 * Spring MVC
 * Bootstrap e JQuery (FrontEnd)
 * Dashboard (Highcharts)
-* Relatórios (iText PDF)
 
 ## Instruções para execução
 * Crie um banco de dados no PostGreSQL e configure-o na classe ConnectionFactory
